@@ -51,7 +51,7 @@ console.log(res); // 30
 
 
 // Polyfill
-Array.prototype.giveMeReduce = function(callbackFn, initalValue) {
+Array.prototype.giveMeReduce = function(callbackFn, init) {
     if (this === null) {
         throw new TypeError('Array.prototype.giveMeReduce called on null or undefined');
     }
@@ -61,12 +61,15 @@ Array.prototype.giveMeReduce = function(callbackFn, initalValue) {
     if (this.length < 1) {
         throw new TypeError('giveMeReduce of empty array is not supported');
     }
-    let accumulator = initialValue;
+    if (!init) {
+        throw new TypeError('giveMeReduce can not be applied on null or undefined initialValue');
+    }
+    let accumulator = init;
     for (let index = 0; index < this.length; index++) {
         accumulator = callbackFn(accumulator, this[index], index, this);
     }
     return accumulator;
 };
 
-const polyfillRes = array.giveMeReduce((accumulator, currentValue) => {return (accumulator + currentValue)}, initialValue);
-console.log(polyfillRes); // 30
+const polyfillRes = array.giveMeReduce((accumulator, currentValue) => accumulator + currentValue, 1);
+console.log(polyfillRes); // 31
