@@ -65,7 +65,7 @@ Array.prototype.giveMeReduce = function(callbackFn, init) {
         throw new TypeError('giveMeReduce can not be applied on null or undefined initialValue');
     }
     let accumulator = init;
-    for (let index = 0; index < this.length; index++) {
+    for (var index = 0; index < this.length; index++) {
         accumulator = callbackFn(accumulator, this[index], index, this);
     }
     return accumulator;
