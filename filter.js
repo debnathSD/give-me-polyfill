@@ -33,13 +33,13 @@ console.log(arr.filter(item => item > 10)); // [ 90, 56, 77, 32 ]
 // Polyfill
 Array.prototype.giveMeFilter = function(callbackFn) {
     if (this === null) {
-        throw new TypeError('Array.prototype.giveMeMap called on null or undefined');
+        throw new TypeError('Array.prototype.giveMeFilter called on null or undefined');
     }
     if (typeof callbackFn !== 'function') {
         throw new TypeError(callbackFn + ' is not a function');
     }
     if (this.length < 1) {
-        throw new TypeError('giveMeMap of empty array is not supported');
+        throw new TypeError('giveMeFilter of empty array is not supported');
     }
     var newArray = [];
     for (var index = 0; index < this.length; index++) {
@@ -51,4 +51,4 @@ Array.prototype.giveMeFilter = function(callbackFn) {
     return newArray;
 };
 
-console.log(arr.filter(item => item > 10)); // [ 90, 56, 77, 32 ]
+console.log(arr.giveMeFilter(item => item > 10)); // [ 90, 56, 77, 32 ]
