@@ -48,3 +48,14 @@ Array.prototype.giveMeMap = function(callbackFn) {
 };
 
 console.log(arr.giveMeMap(x => x * 2)); // [ 2, 4, 6, 8 ]
+
+
+Array.prototype.myMap = function(cb) {
+    var newArr = [];
+    for(var i = 0; i < this.length; i++) {
+        newArr.push(cb(this[i], i, this));
+    }
+    return newArr
+};
+
+console.log(arr.myMap(x => x * 2)); // [ 2, 4, 6, 8 ]

@@ -3,7 +3,7 @@
  * ============
  * 
  * The find() method returns the value of the first element in the provided array that satisfies the provided testing function.
- * If no values satisfy the testing function, undefined is returned.
+ * If no values satisfy the testing function, "undefined" is returned.
  * 
  * DESCRIPTION
  * ===========
@@ -40,3 +40,16 @@ Array.prototype.giveMeFind = function(callbackFn) {
 }
 
 console.log(arr.giveMeFind(x => x > 10)); // 12
+
+
+Array.prototype.myFind = function(cb) {
+    for (var i = 0; i < this.length; i++) {
+        if (cb(this[i], i, this)) {
+            return this[i];
+        }
+    }
+    return undefined;
+};
+
+
+console.log(arr.myFind(x => x > 10)); // 12
